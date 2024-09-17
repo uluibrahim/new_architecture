@@ -15,8 +15,11 @@ import 'package:new_architecture/core/view_model/view_model_factory.dart'
     as _i238;
 import 'package:new_architecture/features/counter/counter_view_model.dart'
     as _i915;
+import 'package:new_architecture/features/settings/settings_view_model.dart'
+    as _i74;
 import 'package:new_architecture/features/template/template_view_model.dart'
     as _i755;
+import 'package:new_architecture/product/providers/app_provider.dart' as _i838;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -33,6 +36,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i755.TemplateViewModel>(() => _i755.TemplateViewModel());
     gh.lazySingleton<_i159.IApiClient>(() => _i159.ApiClient());
     gh.singleton<_i238.ViewModelFactory>(() => _i238.ViewModelFactoryImpl());
+    gh.singleton<_i838.IAppProvider>(() => _i838.AppProvider());
+    gh.factory<_i74.SettingsViewModel>(
+        () => _i74.SettingsViewModel(gh<_i838.IAppProvider>()));
     return this;
   }
 }

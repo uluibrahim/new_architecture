@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_architecture/core/extensions/context_extension.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/screen/screen.dart';
@@ -22,7 +23,7 @@ class CounterScreenState
     return Scaffold(
       appBar: _appBar,
       body: _body,
-      floatingActionButton: _incrementCounterButton,
+      floatingActionButton: _floatingButtons,
     );
   }
 }

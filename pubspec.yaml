@@ -24,7 +24,11 @@ dependencies:
 
   # UTILS
   equatable: ^2.0.5
-  
+
+  # LOCALIZATION
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
@@ -39,7 +43,7 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
-
+  generate: true
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

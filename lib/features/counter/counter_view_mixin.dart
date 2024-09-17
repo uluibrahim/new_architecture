@@ -3,28 +3,44 @@ part of 'counter_view.dart';
 // Write here view's widgets and functions
 mixin CounterViewMixin
     on ScreenState<CounterScreen, CounterViewModel, CounterData> {
-  final String _title = "Counter Page";
-  final String _content = "You have pushed the button this many times:";
-
   PreferredSizeWidget get _appBar => AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(_title),
+        title: Text(context.locale.counterPage),
       );
 
   Widget get _body => Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(_content),
+            Text(context.locale.counterContent),
             _counterText,
           ],
         ),
       );
 
   get _incrementCounterButton => FloatingActionButton(
+        heroTag: "Increment",
         onPressed: viewModel.incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
+      );
+
+  get _settingsButton => FloatingActionButton(
+        heroTag: "settings",
+        onPressed: () {
+          viewModel.goToSettingsPage(context);
+        },
+        tooltip: 'settings',
+        child: const Icon(Icons.settings),
+      );
+
+  get _floatingButtons => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          _incrementCounterButton,
+          const SizedBox(width: 20),
+          _settingsButton,
+        ],
       );
 
   Selector<CounterData, int> get _counterText {
