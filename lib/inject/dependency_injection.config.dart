@@ -11,6 +11,12 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:new_architecture/core/network/api_client.dart' as _i159;
+import 'package:new_architecture/core/view_model/view_model_factory.dart'
+    as _i238;
+import 'package:new_architecture/features/counter/counter_view_model.dart'
+    as _i915;
+import 'package:new_architecture/features/template/template_view_model.dart'
+    as _i755;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -23,7 +29,10 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i915.CounterViewModel>(() => _i915.CounterViewModel());
+    gh.factory<_i755.TemplateViewModel>(() => _i755.TemplateViewModel());
     gh.lazySingleton<_i159.IApiClient>(() => _i159.ApiClient());
+    gh.singleton<_i238.ViewModelFactory>(() => _i238.ViewModelFactoryImpl());
     return this;
   }
 }

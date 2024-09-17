@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_architecture/main.dart';
-import 'package:new_architecture/product/providers/global_provider.dart';
+import 'features/counter/counter_view.dart';
+import 'product/providers/global_provider.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        home: const CounterScreen(),
       ),
     );
   }
