@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:new_architecture/core/extensions/context_extension.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import 'counter_view_model.dart';
 
 part 'counter_view_mixin.dart';
 
+@RoutePage()
 class CounterScreen extends Screen {
   const CounterScreen({super.key});
 

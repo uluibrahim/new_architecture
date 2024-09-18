@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:new_architecture/core/extensions/context_extension.dart';
 import 'package:new_architecture/product/enum/languages.dart';
@@ -10,6 +11,7 @@ import 'settings_view_model.dart';
 
 part 'settings_view_mixin.dart';
 
+@RoutePage()
 class SettingsScreen extends Screen {
   const SettingsScreen({super.key});
 
