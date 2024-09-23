@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_architecture/core/error/error_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../model/state_data.dart';
@@ -35,7 +36,7 @@ abstract class ScreenState<T extends Screen, T2 extends ViewModel<T3>,
   void initState() {
     super.initState();
     viewModel = context.read<ViewModelFactory>().create<T2>();
-    // TODO: Will add Error Handler
+    ErrorHandler.init(context, viewModel.updateState);
   }
 
   @override
