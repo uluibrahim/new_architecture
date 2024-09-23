@@ -1,5 +1,23 @@
 {
+  "checkYourEmail": "Email adresinizi kontrol ediniz",
   "counterContent": "Bu düğmeye defalarca bastın:",
   "counterPage": "Sayaç",
+  "maxLength": "En fazla {length} karakter girilebilir",
+  "@maxLength": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "minLength": "En az {length} karakter girilebilir",
+  "@minLength": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "requiredField": "Zorunlu Alan",
   "settings": "Ayarlar"
 }

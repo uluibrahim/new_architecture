@@ -1,5 +1,23 @@
 {
+  "checkYourEmail": "Check Your Email",
   "counterContent": "You have pushed the button this many times:",
   "counterPage": "Counter Page",
+  "maxLength": "Maximum {length} character can be entered",
+  "@maxLength": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "minLength": "At least {length} characters must be entered",
+  "@minLength": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "requiredField": "Required Field",
   "settings": "Settings"
 }
