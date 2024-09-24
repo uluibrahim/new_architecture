@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
 import '../enum/request_type.dart';
+import '../utils/env/app_environment.dart';
 
 abstract class IApiClient {
   Future<Response> fetch({
@@ -19,7 +20,7 @@ abstract class IApiClient {
 
 @LazySingleton(as: IApiClient)
 final class ApiClient implements IApiClient {
-  final String _baseUrl = "https://example.com/api/";
+  final String _baseUrl = AppEnvItems.baseUrl.value;
 
   late Map<String, String> _baseHeaders;
 
