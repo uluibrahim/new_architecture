@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
+import '../../product/services/shared_preferences_service.dart';
 import '../enum/request_type.dart';
 import '../error/exceptions/exceptions.dart';
 import '../utils/env/app_environment.dart';
@@ -21,11 +22,12 @@ abstract class IApiClient {
 
 @LazySingleton(as: IApiClient)
 final class ApiClient implements IApiClient {
+  final ISharedPreferencesService _shared;
   final String _baseUrl = AppEnvItems.baseUrl.value;
 
   late Map<String, String> _baseHeaders;
 
-  ApiClient() {
+  ApiClient(this._shared) {
     _baseHeaders = {
       HttpHeaders.contentTypeHeader: 'application/json',
     };
@@ -81,8 +83,8 @@ final class ApiClient implements IApiClient {
     return {..._baseHeaders, ...?headers};
   }
 
-  void _addAuthorizationHeader() async {
-    const token = "USER TOKEN";
+  void _addAuthorizationHeader() {
+    final String? token = _shared.getToken();
     _baseHeaders = {
       ..._baseHeaders,
       HttpHeaders.authorizationHeader: 'Bearer $token',

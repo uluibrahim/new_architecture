@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:new_architecture/product/services/shared_preferences_service.dart';
 
 import '../enum/languages.dart';
 
@@ -15,7 +16,9 @@ abstract class IAppProvider implements ValueListenable<AppModel?> {
 
 @Singleton(as: IAppProvider)
 class AppProvider with LanguageHelper implements IAppProvider {
-  AppProvider() : _stateDataNotifier = ValueNotifier(const AppModel());
+  final ISharedPreferencesService _shared;
+  AppProvider(this._shared)
+      : _stateDataNotifier = ValueNotifier(const AppModel());
 
   final ValueNotifier<AppModel?> _stateDataNotifier;
 
@@ -30,9 +33,8 @@ class AppProvider with LanguageHelper implements IAppProvider {
   AppModel? get value => _stateDataNotifier.value;
 
   Locale get _getCurrentLanguage {
-    String? languageValue = "en";
+    String? languageValue = _shared.getLanguage();
 
-    /// TODO: Will get from shared
     return getLocale(languageValue);
   }
 
@@ -43,7 +45,7 @@ class AppProvider with LanguageHelper implements IAppProvider {
       currentLanguage: locale,
     );
 
-    ///TODO: Will set to shared languageCode
+    await _shared.setLanguage(value.name);
   }
 
   @override
