@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
 import '../enum/request_type.dart';
+import '../error/exceptions/exceptions.dart';
 import '../utils/env/app_environment.dart';
 
 abstract class IApiClient {
@@ -38,8 +39,13 @@ final class ApiClient implements IApiClient {
     RequestType requestType = RequestType.get,
     bool useAuthorizationHeader = true,
   }) async {
+    if (useAuthorizationHeader) _addAuthorizationHeader();
+
     final Response response =
         await _sendRequest(requestType, path, body, headers);
+
+    await _checkStatusCode(response.statusCode);
+
     return response;
   }
 
@@ -73,5 +79,22 @@ final class ApiClient implements IApiClient {
 
   Map<String, String> _header(Map<String, String>? headers) {
     return {..._baseHeaders, ...?headers};
+  }
+
+  void _addAuthorizationHeader() async {
+    const token = "USER TOKEN";
+    _baseHeaders = {
+      ..._baseHeaders,
+      HttpHeaders.authorizationHeader: 'Bearer $token',
+    };
+  }
+
+  Future<void> _checkStatusCode(
+    int statusCode,
+  ) async {
+    switch (statusCode) {
+      case HttpStatus.unauthorized:
+        throw AuthException(HttpStatus.unauthorized);
+    }
   }
 }

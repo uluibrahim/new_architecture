@@ -20,6 +20,9 @@ import 'package:new_architecture/features/settings/settings_view_model.dart'
 import 'package:new_architecture/features/template/template_view_model.dart'
     as _i755;
 import 'package:new_architecture/product/providers/app_provider.dart' as _i838;
+import 'package:new_architecture/product/repositories/auth_repository.dart'
+    as _i321;
+import 'package:new_architecture/product/services/auth_service.dart' as _i1069;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -37,6 +40,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i159.IApiClient>(() => _i159.ApiClient());
     gh.singleton<_i238.ViewModelFactory>(() => _i238.ViewModelFactoryImpl());
     gh.singleton<_i838.IAppProvider>(() => _i838.AppProvider());
+    gh.lazySingleton<_i1069.IAuthService>(
+        () => _i1069.AuthService(gh<_i159.IApiClient>()));
+    gh.lazySingleton<_i321.IAuthRepository>(
+        () => _i321.AuthRepository(gh<_i1069.IAuthService>()));
     gh.factory<_i74.SettingsViewModel>(
         () => _i74.SettingsViewModel(gh<_i838.IAppProvider>()));
     return this;
