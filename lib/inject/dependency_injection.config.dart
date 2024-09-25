@@ -15,6 +15,7 @@ import 'package:new_architecture/core/view_model/view_model_factory.dart'
     as _i238;
 import 'package:new_architecture/features/counter/counter_view_model.dart'
     as _i915;
+import 'package:new_architecture/features/login/login_view_model.dart' as _i556;
 import 'package:new_architecture/features/settings/settings_view_model.dart'
     as _i74;
 import 'package:new_architecture/features/template/template_view_model.dart'
@@ -46,6 +47,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i321.AuthRepository(gh<_i1069.IAuthService>()));
     gh.factory<_i74.SettingsViewModel>(
         () => _i74.SettingsViewModel(gh<_i838.IAppProvider>()));
+    gh.factory<_i556.LoginViewModel>(
+        () => _i556.LoginViewModel(gh<_i321.IAuthRepository>()));
     return this;
   }
 }
