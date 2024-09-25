@@ -32,6 +32,8 @@ dependencies:
   # LOCALIZATION
   flutter_localizations:
     sdk: flutter
+  # CACHE
+  shared_preferences: ^2.3.2
 
   cupertino_icons: ^1.0.8
 
