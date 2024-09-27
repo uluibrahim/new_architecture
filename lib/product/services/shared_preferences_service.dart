@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:new_architecture/core/extensions/string_extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../enum/shared_preference_keys.dart';
@@ -23,13 +24,13 @@ class SharedPreferencesService implements ISharedPreferencesService {
   String? getToken() {
     var value = _prefs.getString(PreferenceKeys.token.name);
 
-    if (value != null) return value;
+    if (value != null) return value.decryptAes;
     return value;
   }
 
   @override
   Future<bool> setToken(String token) async =>
-      await _prefs.setString(PreferenceKeys.token.name, token);
+      await _prefs.setString(PreferenceKeys.token.name, token.encryptAes);
 
   @override
   String? getLanguage() => _prefs.getString(PreferenceKeys.language.name);
