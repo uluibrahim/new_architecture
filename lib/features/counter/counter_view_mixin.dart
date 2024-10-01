@@ -14,6 +14,7 @@ mixin CounterViewMixin
           children: <Widget>[
             Text(context.locale.counterContent),
             _counterText,
+            _counterImage
           ],
         ),
       );
@@ -52,6 +53,14 @@ mixin CounterViewMixin
         );
       },
       selector: (_, counterData) => counterData.counter,
+    );
+  }
+
+  Widget get _counterImage {
+    return Image.asset(
+      AssetConstant.images.counter,
+      width: 100,
+      height: 100,
     );
   }
 }

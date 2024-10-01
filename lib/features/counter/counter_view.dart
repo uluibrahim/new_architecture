@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:new_architecture/core/extensions/context_extension.dart';
+import 'package:new_architecture/product/utils/assets/asset_constant.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/screen/screen.dart';

@@ -12,4 +12,5 @@ final class ImageAsset implements BaseAsset {
 
   final String logo = _getPath("logo", ext: AssetExt.png);
   final String logo2 = _getPath("logo2", ext: AssetExt.jpg);
+  final String counter = _getPath("counter", ext:  AssetExt.jpg);
 }
