@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:new_architecture/core/components/custom_snackbar.dart';
 import 'package:new_architecture/core/error/exceptions/exceptions.dart';
 
 final class ErrorHandler {
@@ -38,9 +39,19 @@ final class ErrorHandler {
         case CustomException():
           // Action when throw AuthException
           break;
+        case NetworkStatusException():
+          _showSnackBar("Network Status Error!");
       }
     } else {
       // Default action
     }
+  }
+
+  static _showSnackBar(String message) {
+    CustomSnackbar.show(
+      context: myContext,
+      message: message,
+      color: Colors.red,
+    );
   }
 }

@@ -25,6 +25,7 @@ dependencies:
   # UTILS
   equatable: ^2.0.5
   envied: ^0.5.4+1
+  connectivity_plus: ^6.0.5
 
   # ROUTE
   auto_route: ^9.2.2

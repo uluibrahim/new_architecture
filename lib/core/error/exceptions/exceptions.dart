@@ -9,3 +9,5 @@ final class CustomException implements BaseException {
   String? message;
   CustomException(this.message);
 }
+
+final class NetworkStatusException implements BaseException {}

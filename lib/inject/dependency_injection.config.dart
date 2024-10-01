@@ -11,6 +11,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:new_architecture/core/network/api_client.dart' as _i159;
+import 'package:new_architecture/core/utils/network_status/network_status_manager.dart'
+    as _i577;
 import 'package:new_architecture/core/view_model/view_model_factory.dart'
     as _i238;
 import 'package:new_architecture/features/counter/counter_view_model.dart'
@@ -47,6 +49,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
+    gh.lazySingleton<_i577.INetworkStatusManager>(
+        () => _i577.NetworkStatusManager());
     gh.lazySingleton<_i210.ISharedPreferencesService>(
         () => _i210.SharedPreferencesService(gh<_i460.SharedPreferences>()));
     gh.singleton<_i238.ViewModelFactory>(() => _i238.ViewModelFactoryImpl());

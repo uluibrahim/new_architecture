@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_architecture/core/utils/network_status/network_status_manager.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/view_model/view_model_factory.dart';
@@ -21,6 +22,7 @@ class _GlobalProviderState extends State<GlobalProvider> {
   @override
   void initState() {
     _setLocale();
+    _networkStatusInit();
     super.initState();
   }
 
@@ -38,5 +40,10 @@ class _GlobalProviderState extends State<GlobalProvider> {
   void _setLocale() {
     final IAppProvider localeProvider = getIt.get<IAppProvider>();
     localeProvider.init();
+  }
+
+  void _networkStatusInit() async {
+    final INetworkStatusManager manager = getIt.get<INetworkStatusManager>();
+    await manager.init();
   }
 }
