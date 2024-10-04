@@ -21,7 +21,12 @@ mixin SettingsViewMixin
       );
 
   Widget get _body => Center(
-        child: changeLanguageWidget,
+        child: Column(
+          children: [
+            changeLanguageWidget,
+            _theme,
+          ],
+        ),
       );
 
   Widget _langugeButton(Languages language, String? languageCode) {
@@ -37,6 +42,20 @@ mixin SettingsViewMixin
         language.title,
         style: const TextStyle(color: Colors.white),
       ),
+    );
+  }
+
+  // CHANGE THEME
+  Widget get _theme {
+    return Consumer<AppModel>(
+      builder: (context, value, child) {
+        return Switch(
+          value: value.themeMode == ThemeMode.dark,
+          onChanged: (value) async {
+            await viewModel.changeThemeMode();
+          },
+        );
+      },
     );
   }
 }

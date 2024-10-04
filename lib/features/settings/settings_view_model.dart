@@ -18,6 +18,10 @@ class SettingsViewModel extends ViewModel<SettingsData> {
     await _appProvider.changeLanguage(languages);
   }
 
+  Future<void> changeThemeMode() async {
+    await _appProvider.changeTheme();
+  }
+
   @override
   void updateState({
     AppState state = AppState.idle,

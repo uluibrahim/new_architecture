@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_architecture/core/theme/dark_theme.dart';
+import 'package:new_architecture/core/theme/ligth_theme.dart';
 import 'package:new_architecture/product/route/custom_route_observer.dart';
 import 'package:provider/provider.dart';
 import 'product/models/app_model.dart';
@@ -33,10 +35,9 @@ class App extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appModel.currentLanguage,
             title: 'Flutter Architecture',
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
+            theme: LigthTheme.instance.themeData,
+            darkTheme: DarkTheme.instance.themeData,
+            themeMode: appModel.themeMode,
           );
         },
       ),

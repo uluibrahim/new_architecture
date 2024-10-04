@@ -10,6 +10,7 @@ import '../utils/language_helper.dart';
 
 abstract class IAppProvider implements ValueListenable<AppModel?> {
   Future<void> changeLanguage(Languages locale);
+  Future<void> changeTheme();
 
   void init();
 }
@@ -26,6 +27,7 @@ class AppProvider with LanguageHelper implements IAppProvider {
   void init() {
     _stateDataNotifier.value = AppModel(
       currentLanguage: _getCurrentLanguage,
+      themeMode: _getCurrentTheme,
     );
   }
 
@@ -42,8 +44,8 @@ class AppProvider with LanguageHelper implements IAppProvider {
   Future<void> changeLanguage(Languages value) async {
     Locale locale = getLocale(value.name);
     _stateDataNotifier.value = AppModel(
-      currentLanguage: locale,
-    );
+        currentLanguage: locale,
+        themeMode: _stateDataNotifier.value?.themeMode);
 
     await _shared.setLanguage(value.name);
   }
@@ -61,5 +63,26 @@ class AppProvider with LanguageHelper implements IAppProvider {
   @mustCallSuper
   void dispose() {
     _stateDataNotifier.dispose();
+  }
+
+  @override
+  Future<void> changeTheme() async {
+    _stateDataNotifier.value = AppModel(
+      currentLanguage: _stateDataNotifier.value?.currentLanguage,
+      themeMode: _stateDataNotifier.value?.themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : ThemeMode.light,
+    );
+
+    await _shared.setThemeMode(
+        _stateDataNotifier.value?.themeMode?.name ?? ThemeMode.light.name);
+  }
+
+  ThemeMode get _getCurrentTheme {
+    final String? themeValue = _shared.getThemeMode();
+
+    return (themeValue == ThemeMode.light.name || themeValue == null)
+        ? ThemeMode.light
+        : ThemeMode.dark;
   }
 }

@@ -11,6 +11,9 @@ abstract class ISharedPreferencesService {
   String? getLanguage();
   Future<bool> setLanguage(String value);
 
+  String? getThemeMode();
+  Future<bool> setThemeMode(String value);
+
   Future<bool> clearAllData();
 }
 
@@ -41,4 +44,11 @@ class SharedPreferencesService implements ISharedPreferencesService {
 
   @override
   Future<bool> clearAllData() async => await _prefs.clear();
+
+  @override
+  String? getThemeMode() => _prefs.getString(PreferenceKeys.themeMode.name);
+
+  @override
+  Future<bool> setThemeMode(String value) async =>
+      await _prefs.setString(PreferenceKeys.themeMode.name, value);
 }
